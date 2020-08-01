@@ -1,0 +1,195 @@
+
+<div class="flow-root bg-fixed chat-bg-pattern h-screen"> <!--Contenedor -->
+
+  <div class="shadow-md sm:h-16 h-24 bg-purple-700 px-4 py-2 fixed z-10 w-full "> <!--Barra de Titulo -->
+    <div class="flow-root sm:flex ">
+      <div class="flex w-64">
+      	<img src="./assets/speech-ballon.png" class="w-10" alt="">
+      	<span class="mx-2"></span>
+      	<h1 class="text-white font-bold">Chat app</h1>
+      </div>
+
+      <div class="w-full mt-1 sm:mt-2 content-end sm:flex sm:justify-end flex-1"> <!--Combo-->
+        <div class="inline-block relative w-48">
+          <select (change)="selectUser($event)" [disabled]="isValidUser()" class="block w-full pl-3 appearance-none border border-purple-400 hover:border-purple-500 focus:outline-none shadow py-1 pr-8 focus:shadow-outline leading-tight rounded-md" name="local-user" id="local-user" >
+            <option value="" disabled selected hidden>Selecciona usuario</option>
+            <option value="daniel">Daniel</option>
+            <option value="desconocido">Desconocido</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-purple-700">
+            <svg class="fill=6b46c1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div #messageArea class="px-4 sm:px-20 lg:px-48 h-full overflow-auto py-24 text-xs"> <!--Messages-->
+
+    <div class="">
+      <b>Cambiando el comportamiento</b>
+      <div class="bg-gray-500  mx-auto sm:bg-teal-200 lg:bg-red-300 text-center p-1">
+        Guia para adaptar los mensajes al tamaño de pantalla
+      </div>
+    </div>
+
+    <div *ngFor="let message of messageList">
+
+      <div *ngIf="message?.usuario != userActive; else remoteUser" class="ml-2">
+        <div class="speech remote sleft break-all">
+          <b>{{message.usuario}} dice:</b> {{message.mensaje}}
+        </div>
+      <div class="text-xs font-thin underline">Recibido: {{message.timeStamp| date:'short'}}</div>
+      <hr>
+    </div>
+
+    <ng-template #remoteUser>
+      <div class=" flex flex-col mr-2">
+        <div class="flex justify-end">
+          <div class="speech local sright break-all">
+            <b>{{message?.usuario}} dice:</b> {{message?.mensaje}}
+          </div>
+        </div>
+        <div class="text-xs text-right font-thin">Enviado: {{message.timeStamp | date:'short'}}</div>
+        <hr>
+      </div>
+    </ng-template>
+
+
+    </div>
+
+
+    <!--
+    <div class="ml-2" >
+      <div class="speech remote sleft">
+        <b>Remoto dice:</b> Hola, amigo! 😋
+      </div>
+      <div class="text-xs font-thin underline">recibido: 8:55 pm</div>
+      <hr>
+    </div>
+
+    <div class=" flex flex-col mr-2">
+      <div class="flex justify-end">
+        <div class="speech local sright">
+          <b>Local dice:</b> Que tal, buenas noches. 😎😎😎
+        </div>
+      </div>
+      <div class="text-xs text-right font-thin">enviado: 8:55 pm</div>
+      <hr>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="ml-2" >
+      <div class="speech remote sleft">
+        <b>Remoto dice:</b> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+      </div>
+      <div class="text-xs font-hairline font-mono">23-05-2020 8:55</div>
+      <hr>
+    </div>
+
+    <div class=" flex flex-col mr-2">
+      <div class="flex justify-end">
+        <div class="speech local sright">
+          <b>Local dice:</b> text ever since the 1500s, when an unknown printer.
+        </div>
+      </div>
+      <div class="text-xs text-right font-thin">23-05-2020 8:55</div>
+      <hr>
+    </div>
+    <div class="ml-2" >
+      <div class="speech remote sleft">
+        <b>Remoto dice:</b> took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+      </div>
+      <div class="text-xs font-thin">23-05-2020 8:55</div>
+      <hr>
+    </div>
+
+    <div class=" flex flex-col mr-2">
+      <div class="flex justify-end">
+        <div class="speech local sright">
+          <b>Local dice:</b>  It was popularised.
+        </div>
+      </div>
+      <div class="text-xs text-right font-thin">23-05-2020 8:55</div>
+      <hr>
+    </div>
+    <div class="ml-2" >
+      <div class="speech remote sleft">
+        <b>Remoto dice:</b>in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </div>
+      <div class="text-xs font-thin">23-05-2020 8:55</div>
+      <hr>
+    </div>
+
+    <div class=" flex flex-col mr-2">
+      <div class="flex justify-end">
+        <div class="speech local sright">
+          <b>Local dice:</b> Que tal, buenos días.
+        </div>
+      </div>
+      <div class="text-xs text-right font-thin">23-05-2020 8:55</div>
+      <hr>
+    </div>
+    <div class="ml-2" >
+      <div class="speech remote sleft">
+        <b>Remoto dice:</b> Where does it come from? 🙄
+      </div>
+      <div class="text-xs font-thin">23-05-2020 8:55</div>
+      <hr>
+    </div>
+
+    <div class=" flex flex-col mr-2">
+      <div class="flex justify-end">
+        <div class="speech local sright">
+          <b>Local dice:</b> Contrary to popular belief, Lorem Ipsum is not simply random text.
+        </div>
+      </div>
+      <div class="text-xs text-right font-thin">23-05-2020 8:55</div>
+      <hr>
+    </div>
+    <div class=" flex flex-col mr-2">
+      <div class="flex justify-end">
+        <div class="speech local sright">
+          <b>Local dice:</b> It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+        </div>
+      </div>
+      <div class="text-xs text-right font-thin">23-05-2020 8:55</div>
+      <hr>
+    </div> -->
+
+
+
+
+
+
+
+
+
+
+
+    <div id="new-message" class="h-8 sm:h-16 sm:m-2" ></div>
+
+  </div>
+
+
+  <div class="shadow-sm sh bg-purple-100 mx-auto  w-full  md:h-24  flex mt-auto fixed bottom-0 "> <!--Write Message Area-->
+    <div class="bg-gray-200  mx-3 w-full h-10 md:h-16 my-4 rounded group "> <!--Text Area-->
+      <textarea #textArea (keydown.enter)="enterTextArea($event)" [(ngModel)]="message" [disabled]="!isValidUser()" placeholder="Escribe tu mensaje aqui..." class="no-resize-area w-full h-full rounded px-2 py-2 text-sm focus:outline-none focus:border-purple-500 border border-transparent"
+        name="write-message" id="write-message" ></textarea>
+    </div>
+    <div class="mx-3 md:my-8 my-6"> <!--Send button-->
+      <button [disabled]="!isValidUser()" class="cursor-auto disabled:opacity-75 focus:outline-none text-white font-hairline focus:border-purple-500 hover:bg-purple-400  hover:text-gray-300 border border-purple-600 bg-purple-600 text-xs  rounded-full px-4 py-1 leading-normal" (click)="enviar()">Enviar</button>
+    </div>
+  </div>
+</div>
+

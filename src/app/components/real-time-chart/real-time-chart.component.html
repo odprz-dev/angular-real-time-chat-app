@@ -1,0 +1,21 @@
+<p>real-time-chart works!</p>
+
+
+
+<div style="display: block" *ngIf='signalService.data'>
+  <canvas baseChart
+          [datasets]="signalService.data"
+          [labels]="chartLabels"
+          [options]="chartOptions"
+          [legend]="chartLegend"
+          [chartType]="chartType"
+          [colors]="colors"
+          (chartClick)="chartClicked($event)"
+          ></canvas>
+</div>
+
+<ul>
+  <li *ngFor='let data of signalService.broadcastData'>
+    <strong>Label: </strong> {{data.label}} - <strong>Value: </strong> {{data.data[0]}}
+  </li>
+</ul>
