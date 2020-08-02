@@ -40,17 +40,17 @@
     <div *ngFor="let message of messageList">
 
       <div *ngIf="message?.usuario != userActive; else remoteUser" class="ml-2">
-        <div class="speech remote sleft break-all">
+        <div class="speech remote sleft ">
           <b>{{message.usuario}} dice:</b> {{message.mensaje}}
         </div>
-      <div class="text-xs font-thin underline">Recibido: {{message.timeStamp| date:'short'}}</div>
+      <div class="text-xs font-thin">Recibido: {{message.timeStamp| date:'short'}}</div>
       <hr>
     </div>
 
     <ng-template #remoteUser>
       <div class=" flex flex-col mr-2">
         <div class="flex justify-end">
-          <div class="speech local sright break-all">
+          <div class="speech local sright">
             <b>{{message?.usuario}} dice:</b> {{message?.mensaje}}
           </div>
         </div>

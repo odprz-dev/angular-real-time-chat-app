@@ -5,7 +5,7 @@
   "theme_color": "#6b46c1",
   "background_color": "#F0F0F0",
   "display": "standalone",
-  "description": "Una aplicación de mensajeria instantanea para comunicate con quin quieras!.",
+  "description": "Una aplicación de mensajeria instantanea para comunicate con quien quieras!.",
   "icons": [
       {
           "src": "/assets/images/icons/icon-16x16.png",
